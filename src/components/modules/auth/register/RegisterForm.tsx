@@ -17,8 +17,12 @@ import Logo from "@/app/assets/Logo";
 import { registerUser } from "@/services/AuthServices";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
+import { useState } from "react";
 
 const RegisterForm = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const form = useForm({
     resolver: zodResolver(registrationValidation),
   });
@@ -145,23 +149,32 @@ const RegisterForm = () => {
                 </FormItem>
               )}
             />
-            <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row gap-2">
               <div className="flex-1">
                 <FormField
                   control={form.control}
                   name="password"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="relative">
                       <FormLabel className="font-bold">Password</FormLabel>
                       <FormControl>
                         <Input
                           {...field}
                           value={field.value || ""}
-                          type="password"
+                          type={showPassword ? "text" : "password"}
                           className="rounded-2xl"
                         />
                       </FormControl>
-
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-10 transform -translate-y-1/2 text-gray-600 cursor-pointer">
+                        {showPassword ? (
+                          <Eye size={20} className="text-gray-600" />
+                        ) : (
+                          <EyeOff size={20} className="text-primary" />
+                        )}
+                      </button>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -172,7 +185,7 @@ const RegisterForm = () => {
                   control={form.control}
                   name="passwordConfirm"
                   render={({ field }) => (
-                    <FormItem>
+                    <FormItem className="relative">
                       <FormLabel className="font-bold">
                         Confirm Password
                       </FormLabel>
@@ -180,10 +193,22 @@ const RegisterForm = () => {
                         <Input
                           {...field}
                           value={field.value || ""}
-                          type="password"
+                          type={showConfirmPassword ? "text" : "password"}
                           className="rounded-2xl"
                         />
                       </FormControl>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setShowConfirmPassword(!showConfirmPassword)
+                        }
+                        className="absolute right-3 top-10 transform -translate-y-1/2 text-gray-600 cursor-pointer">
+                        {showConfirmPassword ? (
+                          <Eye size={20} className="text-gray-600" />
+                        ) : (
+                          <EyeOff size={20} className="text-primary" />
+                        )}
+                      </button>
                       {passwordConfirm && password !== passwordConfirm ? (
                         <FormMessage> Password does not match </FormMessage>
                       ) : (

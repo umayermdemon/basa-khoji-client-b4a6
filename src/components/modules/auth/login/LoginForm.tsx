@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -19,9 +19,11 @@ import { loginUser } from "@/services/AuthServices";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { loginValidation } from "./loginValidation";
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
   const [activeTab, setActiveTab] = useState("username");
+  const [showPassword, setShowPassword] = useState(false);
   const form = useForm({
     resolver: zodResolver(loginValidation),
   });
@@ -29,7 +31,12 @@ const LoginForm = () => {
   const router = useRouter();
   const {
     formState: { isSubmitting },
+    reset,
   } = form;
+
+  useEffect(() => {
+    reset(); // Reset form fields
+  }, [activeTab, reset]);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Logging....");
@@ -133,16 +140,26 @@ const LoginForm = () => {
                 control={form.control}
                 name="password"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="relative">
                     <FormLabel className="font-bold">Password</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         value={field.value || ""}
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         className="rounded-2xl"
                       />
                     </FormControl>
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-10 transform -translate-y-1/2 text-gray-600 cursor-pointer">
+                      {showPassword ? (
+                        <Eye size={20} className="text-gray-600" />
+                      ) : (
+                        <EyeOff size={20} className="text-primary" />
+                      )}
+                    </button>
                     <FormMessage />
                   </FormItem>
                 )}
