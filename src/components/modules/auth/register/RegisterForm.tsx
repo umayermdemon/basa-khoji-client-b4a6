@@ -12,7 +12,6 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-// import { toast } from "sonner";
 import { registrationValidation } from "./registrationValidation";
 import Logo from "@/app/assets/Logo";
 import { registerUser } from "@/services/AuthServices";
@@ -33,13 +32,11 @@ const RegisterForm = () => {
     const toastId = toast.loading("Registering....");
     try {
       const res = await registerUser(data);
-      if (!res.success) {
-        toast.error(res?.message, { id: toastId });
-      } else {
-        toast.success(res?.message, {
-          id: toastId,
-        });
+      if (res?.success) {
+        toast.success(res?.message, { id: toastId });
         router.push("/");
+      } else {
+        toast.error(res?.message, { id: toastId });
       }
       console.log(res);
     } catch (err) {
@@ -202,7 +199,7 @@ const RegisterForm = () => {
                 (passwordConfirm && password !== passwordConfirm) as boolean
               }
               type="submit"
-              className="w-full rounded-2xl">
+              className="w-full rounded-2xl cursor-pointer">
               {isSubmitting ? "Registering...." : "Sign Up"}
             </Button>
           </form>
