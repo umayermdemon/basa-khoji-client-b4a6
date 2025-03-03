@@ -1,24 +1,130 @@
 @import "tailwindcss";
 
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #ecf2f4; /* Soft pastel blue */
+  --foreground: #000000; /* Black text */
+
+  --card: var(--background);
+  --card-foreground: var(--background);
+
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+
+  --primary: #ed6e5a; /* Soft coral pink */
+  --primary-foreground: #ffffff; /* White text */
+
+  --secondary: #d9d9d9; /* Light gray */
+  --secondary-foreground: #000000; /* Black text */
+
+  --muted: #e0e0e0; /* Light gray */
+  --muted-foreground: #000000; /* Black text */
+
+  --accent: #cfcfcf; /* Soft gray */
+  --accent-foreground: #000000; /* Black text */
+
+  --destructive: #ff4d4d; /* Red */
+  --destructive-foreground: oklch(0.577 0.245 27.325); /* White text */
+
+  --border: #cccccc; /* Light gray */
+  --input: var(--border);
+  --ring: var(--primary);
+
+  --chart-1: #444444; /* Dark gray */
+  --chart-2: #666666; /* Medium gray */
+  --chart-3: #888888; /* Lighter gray */
+  --chart-4: #aaaaaa; /* Soft gray */
+  --chart-5: #cccccc; /* Very light gray */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.dark {
+  --background: #121212; /* Dark background */
+  --foreground: #ffffff; /* White text */
+
+  --card: var(--background);
+  --card-foreground: var(--foreground);
+
+  --popover: var(--background);
+  --popover-foreground: var(--foreground);
+
+  --primary: #ed6e5a; /* Soft coral pink */
+  --primary-foreground: #ffffff; /* White text */
+
+  --secondary: #2a2a2a; /* Dark gray */
+  --secondary-foreground: #ffffff; /* White text */
+
+  --muted: var(--secondary);
+  --muted-foreground: #ffffff; /* White text */
+
+  --accent: var(--secondary);
+  --accent-foreground: var(--foreground);
+
+  --destructive: #ff4d4d; /* Dark red */
+  --destructive-foreground: oklch(0.637 0.237 25.331); /* White text */
+
+  --border: var(--secondary);
+  --input: var(--border);
+  --ring: #ffffff; /* White ring */
+
+  --chart-1: #ffffff; /* White */
+  --chart-2: #dddddd; /* Light gray */
+  --chart-3: #bbbbbb; /* Soft gray */
+  --chart-4: #999999; /* Medium gray */
+  --chart-5: #777777; /* Dark gray */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
