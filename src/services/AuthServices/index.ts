@@ -45,7 +45,7 @@ export const loginUser = async (userData: FieldValues) => {
 };
 
 export const getCurrentUser = async () => {
-  const accessToken = (await cookies()).get("accessToken")!.value;
+  const accessToken = (await cookies()).get("accessToken")?.value;
   let decodedData = null;
   if (accessToken) {
     decodedData = await jwtDecode(accessToken);
@@ -53,4 +53,8 @@ export const getCurrentUser = async () => {
   } else {
     return null;
   }
+};
+
+export const logOut = async () => {
+  (await cookies()).delete("accessToken");
 };

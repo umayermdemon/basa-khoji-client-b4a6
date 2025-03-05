@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import Link from "next/link";
@@ -5,25 +6,50 @@ import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { LogOut, Menu } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import Logo from "@/app/assets/Logo";
+import { useUser } from "@/context/UserContext";
+import { logOut } from "@/services/AuthServices";
+import { protectedRoute } from "@/const";
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "All Rentals", href: "/all-rental-house" },
-  {
-    name: "Dashboard",
-    href: "#",
-  },
-];
+const formatUserName = (userName: string | undefined) => {
+  if (!userName) return "";
+
+  // Extract alphabetic part from the beginning
+  const match = userName.match(/^[a-zA-Z]+/);
+
+  return match
+    ? match[0].charAt(0).toUpperCase() + match[0].slice(1).toLowerCase()
+    : "";
+};
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const user = false;
+  const { user, setIsLoading } = useUser();
   const pathname = usePathname();
+  const router = useRouter();
+  const userName = formatUserName(user?.userName);
+  const navLinks = [
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "All Rentals", href: "/all-rental-house" },
+    // {
+    //   name: "Dashboard",
+    //   href: `${user?.role}/dashboard`,
+    // },
+  ];
+  if (user) {
+    navLinks.push({ name: "Dashboard", href: `/${user.role}/dashboard` });
+  }
+  const handleLogout = () => {
+    logOut();
+    setIsLoading(true);
+    if (protectedRoute.some((route) => pathname.match(route))) {
+      router.push("/");
+    }
+  };
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md p-4">
@@ -41,27 +67,38 @@ const Navbar = () => {
                 <Link
                   key={idx}
                   href={navItem.href}
-                  className={`relative px-2 py-3 rounded-2xl font-semibold transition-all duration-300 ${
+                  className={`relative px-2 py-1 rounded-2xl font-semibold transition-all duration-300 ${
                     isActive
                       ? "text-[#ed6e5a]"
-                      : "text-gray-800 dark:text-white hover:text-[#ed6e5a] after:w-0"
-                  } after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-[#ed6e5a]/50 after:transition-all after:duration-300 hover:after:w-full`}>
+                      : "text-gray-800 dark:text-white hover:text-[#ed6e5a] after:w-0 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-[#ed6e5a]/50 after:transition-all after:duration-300 hover:after:w-full"
+                  } `}>
                   {navItem.name}
                 </Link>
               );
             })}
           </div>
-          <div>
+          <div className="flex-2/12">
             {user ? (
-              <Link href="/profile" className="hover:text-blue-500">
-                My Profile
-              </Link>
+              <div className="flex justify-center items-center gap-4">
+                <Link
+                  href="/profile"
+                  className="relative  py-1 font-semibold transition-all duration-300 text-gray-800 dark:text-white hover:text-[#ed6e5a] after:w-0 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-[#ed6e5a]/50 after:transition-all after:duration-300 hover:after:w-full">
+                  {userName}'s Profile
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="hover:text-red-800 flex items-center text-xs cursor-pointer font-semibold text-red-700 dark:text-white">
+                  <LogOut /> <span>Logout</span>
+                </button>
+              </div>
             ) : (
-              <Link
-                href="/login"
-                className="hover:text-[#ed6e5a] font-semibold text-gray-800 dark:text-white">
-                Login
-              </Link>
+              <div className="flex justify-end items-end">
+                <Link
+                  href="/login"
+                  className="relative  py-1 font-semibold transition-all duration-300 text-gray-800 dark:text-white hover:text-[#ed6e5a] after:w-0 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-[#ed6e5a]/50 after:transition-all after:duration-300 hover:after:w-full">
+                  Login
+                </Link>
+              </div>
             )}
           </div>
         </div>
@@ -94,12 +131,19 @@ const Navbar = () => {
               })}
 
               {user ? (
-                <Link
-                  href="/profile"
-                  onClick={() => setIsOpen(false)}
-                  className="px-2 font-semibold text-gray-800 dark:text-white">
-                  My Profile
-                </Link>
+                <>
+                  <Link
+                    href="/profile"
+                    onClick={() => setIsOpen(false)}
+                    className="px-2 font-semibold text-gray-800 dark:text-white">
+                    My Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="px-2 hover:text-red-800 flex items-center  font-semibold text-red-700 dark:text-white">
+                    <LogOut /> <span>Logout</span>
+                  </button>
+                </>
               ) : (
                 <Link
                   href="/login"

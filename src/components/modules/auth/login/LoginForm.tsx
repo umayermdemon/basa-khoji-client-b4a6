@@ -17,13 +17,17 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Logo from "@/app/assets/Logo";
 import { loginUser } from "@/services/AuthServices";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { loginValidation } from "./loginValidation";
 import { Eye, EyeOff } from "lucide-react";
 
 const LoginForm = () => {
   const [activeTab, setActiveTab] = useState("username");
   const [showPassword, setShowPassword] = useState(false);
+
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get("redirectPath");
+
   const form = useForm({
     resolver: zodResolver(loginValidation),
   });
@@ -56,7 +60,11 @@ const LoginForm = () => {
       const res = await loginUser(filteredData);
       if (res?.success) {
         toast.success(res?.message, { id: toastId });
-        router.push("/");
+        if (redirect) {
+          router.push(redirect);
+        } else {
+          router.push("/");
+        }
       } else {
         toast.error(res?.message, { id: toastId });
       }

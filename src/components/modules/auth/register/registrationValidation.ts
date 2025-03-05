@@ -3,9 +3,12 @@ import { z } from "zod";
 export const registrationValidation = z.object({
   role: z.string({ required_error: "Role is required" }),
   userName: z
-    .string({ required_error: "User name is required" })
-    .min(3, "User name must be 3 and 10 characters")
-    .max(10, "User name must be 3 and 10 characters"),
+    .string()
+    .min(3, "Username must be at least 3 characters")
+    .regex(
+      /^[A-Za-z]{3,}[A-Za-z0-9_]*$/,
+      "Username must start with at least 3 letters"
+    ),
   email: z
     .string({ required_error: "Email is required" })
     .email("Invalid email address"),
