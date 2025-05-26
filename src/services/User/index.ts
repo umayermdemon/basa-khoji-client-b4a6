@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
 import { IUser } from "@/types";
@@ -12,18 +11,21 @@ export const getMe = async () => {
       headers: {
         Authorization: (await cookies()).get("accessToken")!.value,
       },
+      next: {
+        tags: ["Users"],
+      },
     });
     return res.json();
   } catch (error) {
     console.log(error);
   }
 };
-export const getAllUser = async () => {
+export const getAllUser = async (token: string) => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/admin/users`, {
       method: "GET",
       headers: {
-        Authorization: (await cookies()).get("accessToken")!.value,
+        Authorization: token,
       },
       next: {
         tags: ["Users"],

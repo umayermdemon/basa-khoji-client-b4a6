@@ -1,8 +1,10 @@
-import AllUser from "@/components/modules/user/AllUser";
+import AllUser from "@/components/modules/admin/user/AllUser";
 import { getAllUser } from "@/services/User";
+import { cookies } from "next/headers";
 
 const AllUserPage = async () => {
-  const { data } = await getAllUser();
+  const token = (await cookies()).get("accessToken")!.value;
+  const { data } = await getAllUser(token);
   return (
     <div>
       <AllUser users={data} />

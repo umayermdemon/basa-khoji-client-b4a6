@@ -33,13 +33,15 @@ export function BKTable<TData, TValue>({
 
   return (
     <div className="rounded-md">
-      <Table className="border  bg-white">
-        <TableHeader>
+      <Table className="bg-white p-4">
+        <TableHeader className="bg-[#F7F7F7] rounded-2xl">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id} className="bg-teal-100">
+                  <TableHead
+                    key={header.id}
+                    className="p-6 text-third text-base">
                     {header.isPlaceholder
                       ? null
                       : flexRender(

@@ -1,0 +1,35 @@
+.about {
+  position: relative;
+  background: url("../../../assets/banner-img-2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 30vh;
+  min-height: 250px;
+}
+
+.about::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .banner {
+    height: 60vh;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    height: 50vh;
+    min-height: 500px;
+  }
+}

@@ -13,7 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { registrationValidation } from "./registrationValidation";
-import Logo from "@/app/assets/Logo";
+import Logo from "@/assets/Logo";
 import { registerUser } from "@/services/AuthServices";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
@@ -43,14 +43,18 @@ const RegisterForm = () => {
       } else {
         toast.error(res?.message, { id: toastId });
       }
-      console.log(res);
     } catch (err) {
       console.log(err);
     }
   };
   return (
     <div className="max-w-lg w-full flex-grow bg-[#f6f6f6] rounded-md p-8">
-      <Logo />
+      <Link
+        href="/"
+        className="px-8 flex items-center gap-2 justify-center mb-4">
+        <Logo />
+        <h1 className="font-bold text-2xl">BasaKhoji</h1>
+      </Link>
       <div className="space-y-4">
         <div className="flex items-center justify-center mt-2">
           <h1 className="text-3xl font-semibold">Create Account</h1>

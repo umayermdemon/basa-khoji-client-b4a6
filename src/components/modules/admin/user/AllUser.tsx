@@ -9,7 +9,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import StatusSelector from "./StatusSelector";
+import UserStatusSelector from "./UserStatusSelector";
 import RoleSelector from "./RoleSelector";
 type TUsersProps = {
   users: IUser[];
@@ -43,27 +43,27 @@ const AllUser = ({ users }: TUsersProps) => {
   const columns: ColumnDef<IUser>[] = [
     {
       accessorKey: "userName",
-      header: () => <div>User Name</div>,
+      header: () => <div className="text-center">User Name</div>,
       cell: ({ row }) => (
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <span className="truncate">{row.original.userName}</span>
         </div>
       ),
     },
     {
       accessorKey: "email",
-      header: () => <div>Email</div>,
+      header: () => <div className="text-center">Email</div>,
       cell: ({ row }) => (
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <span className="truncate">{row.original.email}</span>
         </div>
       ),
     },
     {
       accessorKey: "phoneNumber",
-      header: () => <div>Phone Number</div>,
+      header: () => <div className="text-center">Phone Number</div>,
       cell: ({ row }) => (
-        <div className="flex items-center">
+        <div className="flex items-center justify-center">
           <span className="truncate">{row.original.phoneNumber}</span>
         </div>
       ),
@@ -76,24 +76,26 @@ const AllUser = ({ users }: TUsersProps) => {
     {
       accessorKey: "status",
       header: () => <div>Status</div>,
-      cell: ({ row }) => <StatusSelector row={row} />,
+      cell: ({ row }) => <UserStatusSelector row={row} />,
     },
     {
       accessorKey: "action",
-      header: () => <div>Action</div>,
+      header: () => <div className="text-center">Action</div>,
       cell: ({ row }) => (
-        <button
-          className="text-red-500 cursor-pointer"
-          title="Delete"
-          onClick={() => handleDelete(row.original)}>
-          <Trash className="w-5 h-5" />
-        </button>
+        <div className="flex items-center justify-center">
+          <button
+            className="text-red-500 cursor-pointer hover:bg-gray-100 rounded-2xl hover:p-3 p-3"
+            title="Delete"
+            onClick={() => handleDelete(row.original)}>
+            <Trash className="w-5 h-5" />
+          </button>
+        </div>
       ),
     },
   ];
   return (
     <div>
-      <h1 className="text-center font-bold text-4xl mb-4 text-primary">
+      <h1 className="text-center font-bold text-4xl mb-4 text-third">
         All User
       </h1>
       <BKTable columns={columns} data={users} />

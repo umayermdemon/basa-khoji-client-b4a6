@@ -10,7 +10,7 @@ interface Row {
     status: string;
   };
 }
-const StatusSelector = ({ row }: { row: Row }) => {
+const UserStatusSelector = ({ row }: { row: Row }) => {
   const [status, setStatus] = useState(row.original.status);
   const userId = row.original?._id;
   if (!userId) {
@@ -55,4 +55,4 @@ const StatusSelector = ({ row }: { row: Row }) => {
   );
 };
 
-export default StatusSelector;
+export default UserStatusSelector;

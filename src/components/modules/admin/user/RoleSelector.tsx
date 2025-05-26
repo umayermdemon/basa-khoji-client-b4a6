@@ -42,13 +42,10 @@ const RoleSelector = ({ row }: { row: Row }) => {
       value={role}
       onChange={handleRoleChange}
       className={`w-24 px-2 py-1 rounded border cursor-pointer ${
-        role === "admin"
-          ? "text-white bg-blue-800"
-          : role === "landlord"
+        role === "landlord"
           ? "text-white bg-teal-500"
           : "text-white bg-gray-500"
       }`}>
-      <option value="admin">Admin</option>
       <option value="landlord">Landlord</option>
       <option value="tenant">Tenant</option>
     </select>

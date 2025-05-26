@@ -1,4 +1,4 @@
-export default function LandlordDashboard() {
+export default function TenantDashboard() {
   return (
     <div>
       <div className="grid auto-rows-min gap-4 md:grid-cols-3">

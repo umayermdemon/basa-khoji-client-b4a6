@@ -14,12 +14,13 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import Logo from "@/app/assets/Logo";
+import Logo from "@/assets/Logo";
 import { loginUser } from "@/services/AuthServices";
 import { toast } from "sonner";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { loginValidation } from "./loginValidation";
 import { Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 const LoginForm = () => {
   const [activeTab, setActiveTab] = useState("username");
@@ -32,14 +33,13 @@ const LoginForm = () => {
     resolver: zodResolver(loginValidation),
   });
 
-  const router = useRouter();
   const {
     formState: { isSubmitting },
     reset,
   } = form;
 
   useEffect(() => {
-    reset(); // Reset form fields
+    reset();
   }, [activeTab, reset]);
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
@@ -61,21 +61,27 @@ const LoginForm = () => {
       if (res?.success) {
         toast.success(res?.message, { id: toastId });
         if (redirect) {
-          router.push(redirect);
+          window.location.href = redirect;
         } else {
-          router.push("/");
+          window.location.href = "/";
         }
       } else {
         toast.error(res?.message, { id: toastId });
       }
     } catch (err) {
       console.log(err);
+      toast.error("Login failed. Please try again.");
     }
   };
 
   return (
     <div className="max-w-lg w-full flex-grow bg-[#f6f6f6] rounded-md p-8">
-      <Logo />
+      <Link
+        href="/"
+        className="px-8 flex items-center gap-2 justify-center mb-4">
+        <Logo />
+        <h1 className="font-bold text-2xl">BasaKhoji</h1>
+      </Link>
       <div className="space-y-4">
         <div className="flex items-center justify-center mt-2">
           <h1 className="text-3xl font-semibold">Sign In</h1>

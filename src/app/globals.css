@@ -23,6 +23,7 @@
   --primary-foreground: #ffffff; /* White text */
 
   --secondary: #d9d9d9; /* Light gray */
+  --third: #181a20;
   --secondary-foreground: #000000; /* Black text */
 
   --muted: #e0e0e0; /* Light gray */
@@ -42,7 +43,15 @@
   --chart-2: #666666; /* Medium gray */
   --chart-3: #888888; /* Lighter gray */
   --chart-4: #aaaaaa; /* Soft gray */
-  --chart-5: #cccccc; /* Very light gray */ --sidebar: hsl(0 0% 98%); --sidebar-foreground: hsl(240 5.3% 26.1%); --sidebar-primary: hsl(240 5.9% 10%); --sidebar-primary-foreground: hsl(0 0% 98%); --sidebar-accent: hsl(240 4.8% 95.9%); --sidebar-accent-foreground: hsl(240 5.9% 10%); --sidebar-border: hsl(220 13% 91%); --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  --chart-5: #cccccc; /* Very light gray */
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 .dark {
@@ -60,7 +69,7 @@
 
   --secondary: #2a2a2a; /* Dark gray */
   --secondary-foreground: #ffffff; /* White text */
-
+  --third: #181a20;
   --muted: var(--secondary);
   --muted-foreground: #ffffff; /* White text */
 
@@ -78,7 +87,15 @@
   --chart-2: #dddddd; /* Light gray */
   --chart-3: #bbbbbb; /* Soft gray */
   --chart-4: #999999; /* Medium gray */
-  --chart-5: #777777; /* Dark gray */ --sidebar: hsl(240 5.9% 10%); --sidebar-foreground: hsl(240 4.8% 95.9%); --sidebar-primary: hsl(224.3 76.3% 48%); --sidebar-primary-foreground: hsl(0 0% 100%); --sidebar-accent: hsl(240 3.7% 15.9%); --sidebar-accent-foreground: hsl(240 4.8% 95.9%); --sidebar-border: hsl(240 3.7% 15.9%); --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  --chart-5: #777777; /* Dark gray */
+  --sidebar: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
 @theme inline {
@@ -92,6 +109,7 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
+  --color-third: var(--third);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
