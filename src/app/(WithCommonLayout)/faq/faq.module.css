@@ -1,4 +1,4 @@
-.contact {
+.faq {
   position: relative;
   background: url("../../../assets/banner-img-2.jpg");
   background-size: cover;
@@ -9,7 +9,7 @@
   min-height: 250px;
 }
 
-.contact::before {
+.faq::before {
   content: "";
   position: absolute;
   top: 0;

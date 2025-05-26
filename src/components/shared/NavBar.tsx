@@ -15,8 +15,8 @@ import { protectedRoute } from "@/const";
 // Main nav links (always 6)
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "All Rentals", href: "/all-rental-house" },
-  { name: "About Us", href: "/about" },
+  { name: "Rentals", href: "/all-rental-house" },
+  { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
   { name: "Blog", href: "/blog" },
   { name: "FAQ", href: "/faq" },
@@ -105,11 +105,11 @@ const Navbar = () => {
           ? "bg-white dark:bg-gray-900"
           : "bg-transparent dark:bg-gray-900"
       }`}>
+      {/* Mobile Nav Toggle */}
       <div className="container mx-auto flex justify-between items-center">
-        {/* Mobile Nav Toggle */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="lg:hidden p-0">
+            <Button variant="ghost" size="icon" className="md:hidden p-0">
               <AlignLeft
                 style={{ width: "25px", height: "25px" }}
                 className={`${isHome && !scrolling ? "text-white" : ""}`}
@@ -135,58 +135,6 @@ const Navbar = () => {
                   </Link>
                 );
               })}
-              {/* Mega Menu for mobile */}
-              <div>
-                <div className="font-semibold mt-4 mb-2">Explore</div>
-                <div className="flex flex-col gap-2">
-                  {megaMenuItems.map((section, idx) => (
-                    <div key={idx}>
-                      <div className="font-bold">{section.name}</div>
-                      <ul>
-                        {section.links.map((item, i) => (
-                          <li key={i}>
-                            <Link
-                              href={item.href}
-                              onClick={() => setIsOpen(false)}
-                              className="block px-2 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800">
-                              {item.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              {/* User Dropdown for mobile */}
-              {user && (
-                <div className="mt-4 border-t pt-4">
-                  <div className="font-semibold mb-2">Account</div>
-                  <Link
-                    href="/profile"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <User size={18} />
-                    My Profile
-                  </Link>
-                  <Link
-                    href={`/${user.role}/dashboard`}
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <LayoutDashboard size={18} />
-                    Dashboard
-                  </Link>
-                  <button
-                    onClick={() => {
-                      setIsOpen(false);
-                      handleLogout();
-                    }}
-                    className="flex items-center gap-2 p-2 text-red-600 rounded hover:bg-gray-100 dark:hover:bg-gray-700 w-full">
-                    <LogOut size={18} />
-                    Logout
-                  </button>
-                </div>
-              )}
             </div>
           </SheetContent>
         </Sheet>
@@ -210,18 +158,18 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex justify-between items-center w-full">
-          <div className="space-x-6 w-full text-center flex items-center justify-center">
+        <div className="hidden md:flex justify-between items-center w-full">
+          <div className="space-x-4 lg:space-x-6 w-full text-center flex items-center justify-center">
             {navLinks.map((navItem, idx) => {
               const isActive = pathname === navItem.href;
               return (
                 <Link
                   key={idx}
                   href={navItem.href}
-                  className={`relative px-2 py-1 rounded-2xl  font-semibold transition-all duration-300  ${
+                  className={`relative px-2 py-1 rounded-2xl text-lg  font-semibold transition-all duration-300  ${
                     isActive
-                      ? `text-[#ed6e5a] text-lg`
-                      : `text-gray-800 dark:text-white text-lg hover:text-[#ed6e5a] after:w-0 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-[#ed6e5a]/50 after:transition-all after:duration-300 hover:after:w-full ${
+                      ? `text-[#ed6e5a]`
+                      : `text-gray-800 dark:text-white hover:text-[#ed6e5a] after:w-0 after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-[#ed6e5a]/50 after:transition-all after:duration-300 hover:after:w-full ${
                           isHome && !scrolling && "text-white"
                         }`
                   }`}>
@@ -231,7 +179,7 @@ const Navbar = () => {
             })}
             {/* Mega Menu */}
             <div
-              className="relative group"
+              className="relative group hidden lg:flex"
               onMouseEnter={() => setIsMegaOpen(true)}
               onMouseLeave={() => setIsMegaOpen(false)}>
               <button
@@ -281,7 +229,7 @@ const Navbar = () => {
                   }`}
                 />
                 <span
-                  className={`hidden lg:inline ${
+                  className={`hidden md:inline ${
                     isHome && !scrolling
                       ? "text-white"
                       : "text-gray-800 dark:text-white"

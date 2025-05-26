@@ -1,4 +1,4 @@
-import styles from "./contact.module.css";
+import styles from "./faq.module.css";
 
 export default function FAQPage() {
   const faqs = [
@@ -57,8 +57,7 @@ export default function FAQPage() {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <div
-        className={`${styles.contact} relative w-full h-64 bg-cover bg-center`}>
+      <div className={`${styles.faq} relative w-full h-64 bg-cover bg-center`}>
         <div className="absolute inset-0 bg-opacity-30 flex flex-col justify-center items-center text-white">
           <h1 className="text-3xl font-bold">Frequently Asked Questions</h1>
           <p className="text-sm">Home / FAQ</p>

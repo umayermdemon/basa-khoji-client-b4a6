@@ -15,10 +15,10 @@ export default function ContactPage() {
       </div>
 
       {/* Contact Section */}
-      <div className="container mx-auto py-12 px-6 flex flex-col md:flex-row gap-12">
+      <div className="container mx-auto py-12 px-6 flex flex-col lg:flex-row gap-12">
         {/* Contact Info */}
-        <div className="md:w-1/2 flex flex-col gap-8">
-          <h2 className="text-2xl font-bold mb-2 text-[#ed6e5a]">
+        <div className="lg:w-1/2 flex flex-col gap-8">
+          <h2 className="text-2xl text-center font-bold mb-2 text-[#ed6e5a]">
             Get in Touch
           </h2>
           <p className="text-gray-600 mb-4">
@@ -52,7 +52,7 @@ export default function ContactPage() {
         </div>
 
         {/* Contact Form */}
-        <div className="md:w-1/2 bg-white rounded-2xl shadow-lg p-8 flex flex-col gap-6 justify-center">
+        <div className="lg:w-1/2 bg-white rounded-2xl shadow-lg p-8 flex flex-col gap-6 justify-center">
           <h3 className="text-xl font-semibold mb-2 text-center">
             Send Us a Message
           </h3>
