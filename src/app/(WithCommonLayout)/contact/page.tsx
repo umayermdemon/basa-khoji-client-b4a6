@@ -15,7 +15,7 @@ export default function ContactPage() {
       </div>
 
       {/* Contact Section */}
-      <div className="max-w-7xl mx-auto py-12 px-6 flex flex-col md:flex-row gap-12">
+      <div className="container mx-auto py-12 px-6 flex flex-col md:flex-row gap-12">
         {/* Contact Info */}
         <div className="md:w-1/2 flex flex-col gap-8">
           <h2 className="text-2xl font-bold mb-2 text-[#ed6e5a]">

@@ -9,7 +9,7 @@ const RentalHouseDetailsPage = async ({
   const { housesId } = await params;
   const { data } = await getSingleRentalHouse(housesId);
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="container mx-auto">
       <RentalHouseDetails house={data} />
     </div>
   );

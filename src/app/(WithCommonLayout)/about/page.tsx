@@ -27,7 +27,7 @@ export default function AboutPage() {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-7xl mx-auto py-12 mt-8 px-6 flex flex-col lg:flex-row items-start gap-12">
+      <div className="container mx-auto py-12 mt-8 px-6 flex flex-col lg:flex-row items-start gap-12">
         <div className="lg:w-1/2">
           <h2 className="text-3xl font-bold mb-4 text-center">
             BasaKhoji – <br /> Your Smart Rental & Housing Solution
@@ -78,7 +78,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="bg-[#fdf6f3] max-w-7xl mx-auto my-8 py-12 px-6 md:px-28 rounded-2xl flex flex-col md:flex-row items-center justify-around gap-8">
+      <div className="bg-[#fdf6f3] container mx-auto my-8 py-12 px-6 md:px-28 rounded-2xl flex flex-col md:flex-row items-center justify-around gap-8">
         {/* Left Side - Text Content */}
         <div className="md:w-1/3">
           <h2 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">
@@ -114,7 +114,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <div className="bg-[#F7F7F7] max-w-7xl mx-auto my-8 py-12 px-6 md:p-28 rounded-2xl flex flex-col md:flex-row items-center justify-around gap-8">
+      <div className="bg-[#F7F7F7] container mx-auto my-8 py-12 px-6 md:p-28 rounded-2xl flex flex-col md:flex-row items-center justify-around gap-8">
         <div>
           <h1 className="text-3xl font-bold">Need help? Talk to our expert.</h1>
           <p>Talk to our experts or Browse through more properties.</p>

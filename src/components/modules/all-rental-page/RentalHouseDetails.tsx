@@ -74,7 +74,7 @@ const RentalHouseDetails = ({ house }: { house: IRentalHouse }) => {
         </div>
       </div>
       {/* image section */}
-      <div className="max-w-7xl mx-auto mt-8">
+      <div className="container mx-auto mt-8">
         {images.length > 1 ? (
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
             <div className="col-span-2 md:col-span-2 rounded-l-2xl group overflow-hidden ">

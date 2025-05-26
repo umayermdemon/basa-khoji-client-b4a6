@@ -105,7 +105,7 @@ const Navbar = () => {
           ? "bg-white dark:bg-gray-900"
           : "bg-transparent dark:bg-gray-900"
       }`}>
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="container mx-auto flex justify-between items-center">
         {/* Mobile Nav Toggle */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
