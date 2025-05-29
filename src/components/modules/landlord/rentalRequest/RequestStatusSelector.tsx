@@ -43,7 +43,6 @@ const RequestStatusSelector = ({ row }: { row: Row }) => {
         status: newStatus,
         landlordPhone: phone,
       });
-      console.log(res);
       if (res?.success) {
         toast.success(res?.message);
         setStatus(res?.success?.data?.status);

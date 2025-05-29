@@ -8,7 +8,7 @@ const AllRentalHouse = async () => {
     <div className="space-y-4 w-full">
       <h1>Showing 1–10 of 13 results</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-        {data.map((item: any) => (
+        {data?.map((item: any) => (
           <AllRentalHouseCard key={item?._id} house={item} />
         ))}
       </div>

@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 
 import { BKTable } from "@/components/ui/core/BKTable";
-import { IRentalRequest } from "@/types";
+import { TRentalRequest } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import RequestStatusSelector from "./RequestStatusSelector";
 type TRentalRequestsProps = {
-  requests: IRentalRequest[];
+  requests: TRentalRequest[];
 };
 
 const AllRentalRequestForLandlord = ({ requests }: TRentalRequestsProps) => {
@@ -43,7 +43,7 @@ const AllRentalRequestForLandlord = ({ requests }: TRentalRequestsProps) => {
       </div>
     );
   };
-  const columns: ColumnDef<IRentalRequest>[] = [
+  const columns: ColumnDef<TRentalRequest>[] = [
     {
       accessorKey: "tenantId",
       header: () => <div>User Email</div>,

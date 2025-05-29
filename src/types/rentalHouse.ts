@@ -1,4 +1,4 @@
-export interface IRentalHouse {
+export type TRentalHouse = {
   _id: string;
   title: string;
   location: {
@@ -17,4 +17,4 @@ export interface IRentalHouse {
   availableFrom: Date;
   amenities?: string[];
   isAvailable: boolean;
-}
+};

@@ -1,13 +1,13 @@
 "use server";
 
-import { IRentalRequest } from "@/types";
+import { TRentalRequest } from "@/types";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-export const createRentalRequest = async (data: IRentalRequest) => {
+export const createRentalRequest = async (data: TRentalRequest) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/tenants/requests`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-request/requests`,
       {
         method: "POST",
         headers: {
@@ -25,7 +25,7 @@ export const createRentalRequest = async (data: IRentalRequest) => {
 export const getAllRentalRequestForLandlord = async (token: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/landlords/requests`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-house/requests`,
       {
         method: "GET",
         headers: {
@@ -44,7 +44,7 @@ export const getAllRentalRequestForLandlord = async (token: string) => {
 export const getAllRentalRequestForTenant = async (token: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/tenants/requests`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-request/requests`,
       {
         method: "GET",
         headers: {
@@ -62,11 +62,11 @@ export const getAllRentalRequestForTenant = async (token: string) => {
 };
 export const acceptOrRejectRentalRequestByLandlord = async (
   id: string,
-  updatedData: Partial<IRentalRequest>
+  updatedData: Partial<TRentalRequest>
 ) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/landlords/requests/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-house/requests/${id}`,
       {
         method: "PUT",
         headers: {

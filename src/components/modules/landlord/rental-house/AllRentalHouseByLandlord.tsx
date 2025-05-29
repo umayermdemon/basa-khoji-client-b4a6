@@ -3,7 +3,7 @@
 
 import DeleteConfirmationModal from "@/components/ui/core/BKModal/deleteConfirmationModal";
 import { BKTable } from "@/components/ui/core/BKTable";
-import { IRentalHouse } from "@/types";
+import { TRentalHouse } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { Pencil, Trash } from "lucide-react";
 import { useState } from "react";
@@ -12,14 +12,14 @@ import { deleteRentalHouseByLandlord } from "@/services/RentalHouse";
 import Image from "next/image";
 import Link from "next/link";
 type TRentalHousesProps = {
-  houses: IRentalHouse[];
+  houses: TRentalHouse[];
 };
 const AllRentalHouseByLandlord = ({ houses }: TRentalHousesProps) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-  const handleDelete = (data: IRentalHouse) => {
+  const handleDelete = (data: TRentalHouse) => {
     setSelectedId(data?._id);
     setSelectedItem(data?.title);
     setModalOpen(true);
@@ -40,7 +40,7 @@ const AllRentalHouseByLandlord = ({ houses }: TRentalHousesProps) => {
       console.error(err?.message);
     }
   };
-  const columns: ColumnDef<IRentalHouse>[] = [
+  const columns: ColumnDef<TRentalHouse>[] = [
     {
       accessorKey: "title",
       header: () => <div>House Title</div>,

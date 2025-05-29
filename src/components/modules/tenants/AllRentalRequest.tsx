@@ -3,13 +3,13 @@
 import { useState, useEffect } from "react";
 
 import { BKTable } from "@/components/ui/core/BKTable";
-import { IRentalRequest } from "@/types";
+import { TRentalRequest } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { CreditCard } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 type TRentalRequestsProps = {
-  requests: IRentalRequest[];
+  requests: TRentalRequest[];
 };
 const fetchHouseData = async (listingId: any) => {
   try {
@@ -73,7 +73,7 @@ const AllRentalRequest = ({ requests }: TRentalRequestsProps) => {
   const handlePayment = (data: any) => {
     console.log(data);
   };
-  const columns: ColumnDef<IRentalRequest>[] = [
+  const columns: ColumnDef<TRentalRequest>[] = [
     {
       accessorKey: "listingId",
       header: () => <div>House Title</div>,

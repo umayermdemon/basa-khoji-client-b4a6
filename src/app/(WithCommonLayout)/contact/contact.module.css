@@ -21,14 +21,14 @@
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  .banner {
+  .contact {
     height: 60vh;
     min-height: 500px;
   }
 }
 
 @media (max-width: 480px) {
-  .banner {
+  .contact {
     height: 50vh;
     min-height: 500px;
   }

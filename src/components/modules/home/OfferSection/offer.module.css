@@ -1,6 +1,6 @@
-.about {
+.offer {
   position: relative;
-  background: url("../../../assets/banner-img-2.jpg");
+  background: url("../../../../assets/banner-img-2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -9,7 +9,7 @@
   min-height: 250px;
 }
 
-.about::before {
+.offer::before {
   content: "";
   position: absolute;
   top: 0;
@@ -21,15 +21,15 @@
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  .about {
+  .offer {
     height: 60vh;
-    min-height: 500px;
+    min-height: 300px;
   }
 }
 
 @media (max-width: 480px) {
-  .about {
+  .offer {
     height: 50vh;
-    min-height: 500px;
+    min-height: 620px;
   }
 }

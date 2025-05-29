@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/form";
 import { createRentalRequest } from "@/services/RentalRequest";
 import { getMe } from "@/services/User";
-import { IRentalRequest } from "@/types";
+import { TRentalRequest } from "@/types";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -52,7 +52,7 @@ const BKRequestModal = ({ listingId }: { listingId: string }) => {
       listingId,
     };
     try {
-      const res = await createRentalRequest(updatedData as IRentalRequest);
+      const res = await createRentalRequest(updatedData as TRentalRequest);
       if (res?.success) {
         toast.success(res?.message);
         router.push("/tenant/my-rentals");
@@ -62,13 +62,12 @@ const BKRequestModal = ({ listingId }: { listingId: string }) => {
     } catch (error) {
       console.log(error);
     }
-    console.log("Rental Request Submitted:", data);
   };
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="cursor-pointer rounded-2xl">Request Rental</Button>
+        <Button className="cursor-pointer rounded-2xl">Request For Rent</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>

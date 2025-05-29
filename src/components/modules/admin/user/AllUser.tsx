@@ -4,7 +4,7 @@
 import DeleteConfirmationModal from "@/components/ui/core/BKModal/deleteConfirmationModal";
 import { BKTable } from "@/components/ui/core/BKTable";
 import { deleteUser } from "@/services/User";
-import { IUser } from "@/types";
+import { TUser } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { Trash } from "lucide-react";
 import { useState } from "react";
@@ -12,14 +12,14 @@ import { toast } from "sonner";
 import UserStatusSelector from "./UserStatusSelector";
 import RoleSelector from "./RoleSelector";
 type TUsersProps = {
-  users: IUser[];
+  users: TUser[];
 };
 const AllUser = ({ users }: TUsersProps) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-  const handleDelete = (data: IUser) => {
+  const handleDelete = (data: TUser) => {
     setSelectedId(data?._id);
     setSelectedItem(data?.userName);
     setModalOpen(true);
@@ -40,7 +40,7 @@ const AllUser = ({ users }: TUsersProps) => {
       console.error(err?.message);
     }
   };
-  const columns: ColumnDef<IUser>[] = [
+  const columns: ColumnDef<TUser>[] = [
     {
       accessorKey: "userName",
       header: () => <div className="text-center">User Name</div>,

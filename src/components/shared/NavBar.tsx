@@ -61,7 +61,6 @@ const Navbar = () => {
   const router = useRouter();
   const userName = formatUserName(user?.userName);
   const [scrolling, setScrolling] = useState(false);
-
   useEffect(() => {
     if (pathname !== "/") return;
     const handleScroll = () => {
@@ -264,7 +263,7 @@ const Navbar = () => {
           ) : (
             <div className="flex justify-end items-end">
               <Link
-                href="/login"
+                href={`/login?redirectPath=${pathname}`}
                 className={`relative  py-1 font-semibold transition-all duration-300 ${
                   isHome && !scrolling
                     ? "text-white"

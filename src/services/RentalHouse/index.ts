@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 export const createRentalHouse = async (houseData: FormData) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-house/listings`,
       {
         method: "POST",
         headers: {
@@ -25,7 +25,7 @@ export const createRentalHouse = async (houseData: FormData) => {
 export const getAllRentalHouse = async () => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/users/listings`
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-house/listings`
     );
     return res.json();
   } catch (error) {
@@ -35,12 +35,9 @@ export const getAllRentalHouse = async () => {
 export const getSingleRentalHouse = async (id: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/users/listings/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-house/listings/${id}`,
       {
         method: "GET",
-        headers: {
-          Authorization: (await cookies()).get("accessToken")!.value,
-        },
         next: {
           tags: ["RentalHouses"],
         },
@@ -75,7 +72,7 @@ export const getAllRentalHouseByAdmin = async (token: string) => {
 export const getAllRentalHouseByLandlord = async (token: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-house/listings/landlord`,
       {
         method: "GET",
         headers: {
@@ -94,7 +91,7 @@ export const getAllRentalHouseByLandlord = async (token: string) => {
 export const deleteRentalHouseByLandlord = async (id: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_API}/landlords/listings/${id}`,
+      `${process.env.NEXT_PUBLIC_BASE_API}/rental-house/listings/${id}`,
       {
         method: "DELETE",
         headers: {

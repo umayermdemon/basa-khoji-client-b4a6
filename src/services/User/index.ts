@@ -1,6 +1,6 @@
 "use server";
 
-import { IUser } from "@/types";
+import { TUser } from "@/types";
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
@@ -37,9 +37,20 @@ export const getAllUser = async (token: string) => {
   }
 };
 
+export const getSingleUser = async (id: string) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_API}/users/${id}`, {
+      method: "GET",
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const updateUserStatus = async (
   id: string,
-  updatedData: Partial<IUser>
+  updatedData: Partial<TUser>
 ) => {
   try {
     const res = await fetch(
@@ -64,7 +75,7 @@ export const updateUserStatus = async (
 };
 export const updateUserRole = async (
   id: string,
-  updatedData: Partial<IUser>
+  updatedData: Partial<TUser>
 ) => {
   try {
     const res = await fetch(

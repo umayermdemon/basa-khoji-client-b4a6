@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { IRentalHouse } from "@/types";
+import { TRentalHouse } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { FaBath, FaBed } from "react-icons/fa";
 
-const AllRentalHouseCard = ({ house }: { house: IRentalHouse }) => {
+const AllRentalHouseCard = ({ house }: { house: TRentalHouse }) => {
   return (
     <div className="max-w-2xl bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col h-full">
       <div className="relative overflow-hidden group">
@@ -15,8 +15,13 @@ const AllRentalHouseCard = ({ house }: { house: IRentalHouse }) => {
           width={400}
           height={400}
         />
-        <span className="absolute top-3 left-3 bg-red-500 text-white text-xs px-3 py-1 rounded-full uppercase">
-          Featured
+        <span
+          className={`absolute top-3 left-3 text-xs px-3 py-1 font-semibold rounded-full uppercase ${
+            house?.isAvailable
+              ? "bg-green-600 text-white"
+              : "bg-red-600 text-white"
+          }`}>
+          {house?.isAvailable ? "Available" : "Not Available"}
         </span>
       </div>
       <div className="p-4 flex flex-col flex-grow">
@@ -40,7 +45,6 @@ const AllRentalHouseCard = ({ house }: { house: IRentalHouse }) => {
             </span>
           </div>
         </div>
-        {/* Ensuring the button stays at the bottom */}
 
         <Link href={`/all-rental-house/${house?._id}`}>
           <Button className="w-full cursor-pointer rounded-2xl mt-2">

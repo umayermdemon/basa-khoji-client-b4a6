@@ -36,7 +36,6 @@ const RegisterForm = () => {
     const toastId = toast.loading("Registering....");
     try {
       const res = await registerUser(data);
-      console.log(res);
       if (res?.success) {
         toast.success(res?.message, { id: toastId });
         router.push("/");

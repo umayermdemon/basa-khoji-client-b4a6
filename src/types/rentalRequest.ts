@@ -1,4 +1,4 @@
-export interface IRentalRequest {
+export type TRentalRequest = {
   _id: string;
   listingId: string;
   tenantId: string;
@@ -8,4 +8,4 @@ export interface IRentalRequest {
   additionalMessage?: string;
   moveInDate: Date;
   rentalDuration: number;
-}
+};

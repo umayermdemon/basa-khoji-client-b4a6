@@ -28,9 +28,6 @@ export const middleware = async (request: NextRequest) => {
       // );
     }
   }
-  if (pathname.startsWith("/all-rental-house/")) {
-    return NextResponse.next();
-  }
   if (
     (userInfo?.role as role) &&
     roleBasedPrivateRoutes[userInfo?.role as role]
@@ -53,6 +50,5 @@ export const config = {
     "/tenant/:page",
     "/landlord",
     "/landlord/:page",
-    "/all-rental-house/:page",
   ],
 };
